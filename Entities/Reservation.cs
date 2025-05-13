@@ -30,10 +30,23 @@ namespace Excecoes.Entities
             return (int)duration.TotalDays;
         }
 
-        public void UpdateDates (DateTime chackIn, DateTime checkOut)
+        public  string UpdateDates (DateTime checkIn, DateTime checkOut)
         {
-            CheckIn = chackIn;
-            CheckOut = checkOut;   
+            DateTime now = DateTime.Now;
+
+            if (checkIn < now || checkOut < now)
+            {
+                return "Error in reservation: Reservation dates for update must be future dates"; 
+            }
+            
+            if (checkOut <= checkIn)
+            {
+                return "Error in reservation: Reservation dates for update must be future dates";
+            }
+
+            CheckIn = checkIn;
+            CheckOut = checkOut;
+            return null;
         }
 
         public override string ToString()

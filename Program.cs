@@ -6,7 +6,7 @@ namespace Exececoes
 {
     class Program
     {
-        static void Main (string[] args)
+        static void Main(string[] args)
         {
             Console.Write("Room number: ");
             int number = int.Parse(Console.ReadLine());
@@ -18,7 +18,7 @@ namespace Exececoes
             DateTime checkOut = DateTime.Parse(Console.ReadLine());
 
 
-            if(checkOut <= checkIn)
+            if (checkOut <= checkIn)
             {
                 Console.WriteLine("Error in reservation: Chech-out date must be after check-in:  ");
             }
@@ -37,24 +37,25 @@ namespace Exececoes
                 Console.Write("Check-out date (dd/MM/yyyy): ");
                 checkOut = DateTime.Parse(Console.ReadLine());
 
-                DateTime now = DateTime.Now;
+                string error = reservation.UpdateDates(checkIn, checkOut);
 
-                if(checkIn < now || checkOut < now)
+                if (error != null)
                 {
-                    Console.WriteLine("Error in reservation: Reservation dates for update must be future dates");
+                    Console.WriteLine("Error in reservation ");
                 }
+
                 else
                 {
-                 reservation.UpdateDates(checkIn, checkOut);
-                    Console.WriteLine("Rservation: " + reservation);
+                    Console.WriteLine("Reservation: " + reservation);
                 }
+
             }
-
-
-
-       
-
-
         }
+
+
+
+
+
+
     }
 }
